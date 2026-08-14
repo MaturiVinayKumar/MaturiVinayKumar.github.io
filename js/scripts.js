@@ -61,8 +61,7 @@ $(document).ready(function () {
 
     $('.fancybox').fancybox({
         padding: 4,
-        width: 1000,
-        height: 800
+        type: 'image'
     });
 
     /***************** Tooltips ******************/
@@ -166,13 +165,14 @@ $(document).ready(function () {
 
 
     /********************** Toggle Map Content **********************/
-    $('#btn-show-map').click(function () {
+    $('#btn-show-map, #btn-show-content').click(function () {
         $('#map-content').toggleClass('toggle-map-content');
         $('#btn-show-content').toggleClass('toggle-map-content');
     });
-    $('#btn-show-content').click(function () {
-        $('#map-content').toggleClass('toggle-map-content');
-        $('#btn-show-content').toggleClass('toggle-map-content');
+
+    $('#btn-show-map-reception, #btn-show-content-reception').click(function () {
+        $('#map-content-reception').toggleClass('toggle-map-content');
+        $('#btn-show-content-reception').toggleClass('toggle-map-content');
     });
 
     /********************** Add to Calendar **********************/
@@ -241,7 +241,8 @@ $(document).ready(function () {
 
 // Google map
 function initMap() {
-    var location = {lat: 22.5932759, lng: 88.27027720000001};
+    if (typeof google === 'undefined' || !document.getElementById('map-canvas')) return;
+    var location = {lat: 18.2672864, lng: 83.3366042};
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
         zoom: 15,
         center: location,
