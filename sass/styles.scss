@@ -483,6 +483,128 @@ Intro
   width: 80%;
 }
 
+#invitation {
+  background: #fdfaf6;
+  padding: 55px 0;
+  border-bottom: 1px solid #f0e9df;
+
+  .invitation-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 991px) {
+      display: block;
+    }
+  }
+
+  .invitation-text-wrap {
+    padding: 10px 25px;
+
+    .invitation-heading {
+      font-family: "Merriweather", Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #3d4351;
+      margin-top: 0;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .heading-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+
+      span {
+        display: inline-block;
+        width: 35px;
+        height: 1px;
+        background: #e8ca6f;
+      }
+
+      i {
+        font-size: 11px;
+        color: #e8ca6f;
+        margin: 0 10px;
+      }
+    }
+
+    .poem-quote {
+      font-family: "Merriweather", Georgia, serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #555b68;
+      margin-bottom: 18px;
+      padding-bottom: 0;
+    }
+
+    .dates-badge {
+      display: inline-block;
+      background: rgba(232, 202, 111, 0.15);
+      border: 1px solid rgba(232, 202, 111, 0.4);
+      color: #b88d2a;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 25px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+
+      i {
+        margin-right: 6px;
+        font-size: 13px;
+      }
+    }
+
+    .poem-body {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(28, 54, 83, 0.75);
+      margin-bottom: 14px;
+      padding-bottom: 0;
+    }
+
+    .poem-blessing {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #3d4351;
+      font-weight: 600;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .invitation-img-wrap {
+    padding: 10px;
+    text-align: center;
+
+    img {
+      border-radius: 14px;
+      border: 2px solid rgba(232, 202, 111, 0.35);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 380px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      display: inline-block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.15);
+        border-color: #e8ca6f;
+      }
+    }
+
+    @media (max-width: 991px) {
+      margin-top: 30px;
+    }
+  }
+}
+
 #intro {
   padding-top: 50px;
   padding-bottom: 50px;
