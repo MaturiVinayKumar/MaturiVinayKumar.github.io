@@ -235,6 +235,33 @@ $(document).ready(function () {
         }
     });
 
+    /********************** Background Wedding Music Autoplay **********************/
+    var audio = document.getElementById('wedding-music');
+    if (audio) {
+        audio.volume = 0.75;
+
+        function startAudio() {
+            var playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(function () {
+                    // Audio playing successfully, remove all interaction listeners
+                    $(window).off('.weddingMusic');
+                    $(document).off('.weddingMusic');
+                }).catch(function (error) {
+                    console.log('Autoplay waiting for user gesture.');
+                });
+            }
+        }
+
+        // Try autoplay immediately
+        startAudio();
+
+        // If browser blocks unprompted autoplay, trigger immediately on first user interaction
+        var events = 'click.weddingMusic touchstart.weddingMusic touchend.weddingMusic pointerdown.weddingMusic scroll.weddingMusic wheel.weddingMusic keydown.weddingMusic mousemove.weddingMusic';
+        $(document).on(events, startAudio);
+        $(window).on(events, startAudio);
+    }
+
 });
 
 /********************** Extras **********************/
