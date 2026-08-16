@@ -236,31 +236,41 @@ $(document).ready(function () {
     });
 
     /********************** Background Wedding Music Autoplay **********************/
-    var audio = document.getElementById('wedding-music');
-    if (audio) {
+    (function () {
+        var audio = document.getElementById('wedding-music');
+        if (!audio) return;
+
         audio.volume = 0.75;
+        var started = false;
 
         function startAudio() {
-            var playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(function () {
-                    // Audio playing successfully, remove all interaction listeners
-                    $(window).off('.weddingMusic');
-                    $(document).off('.weddingMusic');
-                }).catch(function (error) {
-                    console.log('Autoplay waiting for user gesture.');
+            if (started) return;
+            var promise = audio.play();
+            if (promise !== undefined) {
+                promise.then(function () {
+                    started = true;
+                    // Clean up all listeners once playing
+                    ['touchstart', 'touchend', 'click', 'pointerdown', 'scroll', 'keydown'].forEach(function (evt) {
+                        document.removeEventListener(evt, startAudio, true);
+                        window.removeEventListener(evt, startAudio, true);
+                    });
+                }).catch(function () {
+                    // Still blocked — listeners will retry on next gesture
                 });
             }
         }
 
-        // Try autoplay immediately
+        // 1. Try immediate autoplay (works on desktop after first visit)
         startAudio();
 
-        // If browser blocks unprompted autoplay, trigger immediately on first user interaction
-        var events = 'click.weddingMusic touchstart.weddingMusic touchend.weddingMusic pointerdown.weddingMusic scroll.weddingMusic wheel.weddingMusic keydown.weddingMusic mousemove.weddingMusic';
-        $(document).on(events, startAudio);
-        $(window).on(events, startAudio);
-    }
+        // 2. Attach native capture-phase listeners — these fire BEFORE jQuery handlers
+        //    and are considered trusted gestures by iOS Safari & Android Chrome
+        var triggerEvents = ['touchstart', 'touchend', 'click', 'pointerdown', 'scroll', 'keydown'];
+        triggerEvents.forEach(function (evt) {
+            document.addEventListener(evt, startAudio, { capture: true, passive: true });
+            window.addEventListener(evt, startAudio, { capture: true, passive: true });
+        });
+    })();
 
 });
 
