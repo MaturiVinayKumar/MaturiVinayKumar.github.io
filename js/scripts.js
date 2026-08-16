@@ -184,23 +184,23 @@ $(document).ready(function () {
         },
         data: {
             // Event title
-            title: "Vinay and Sruthi's Wedding",
+            title: "Vinay & Sruthi's Wedding",
 
             // Event start date
-            start: new Date('Nov 27, 2017 10:00'),
+            start: new Date('Sep 4, 2026 02:55'),
 
             // Event duration (IN MINUTES)
             // duration: 120,
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('Nov 29, 2017 00:00'),
+            end: new Date('Sep 5, 2026 23:00'),
 
             // Event Address
-            address: 'ITC Fortune Park Hotel, Kolkata',
+            address: 'Sri Bellana Conventions, Gajapatinagaram',
 
             // Event Description
-            description: "We can't wait to see you on our big day. For any queries or issues, please contact Mr. Amit Roy at +91 9876543210."
+            description: "Vinay & Sruthi's Wedding. Marriage Sumuhurtam: 3rd Sept 2:55 AM (Early morning of 4th Sep) at Sri Bellana Conventions. Reception: 5th Sept 7:00 PM onwards at SVSD Function Hall, Rajam."
         }
     });
 
